@@ -1,6 +1,6 @@
 ﻿<template>
   <div>
-    <h2>Hello from Vue Component</h2>
+    <h2>Hello from Vue Component!</h2>
     <p>{{ message }}</p>
     <button @click="changeMessage">Change Message</button>
   </div>

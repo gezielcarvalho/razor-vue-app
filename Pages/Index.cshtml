@@ -2,13 +2,23 @@
 @model RazorVueApp.Pages.IndexModel
 @{
     ViewData["Title"] = "Home Page";
+    bool isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 }
 
 <div id="vue-app">
-    <!-- Vue components will render here cshtml-->
+    <!-- Vue components will render here -->
     <sample-component></sample-component>
 </div>
 
 @section Scripts {
-    <script src="~/dist/bundle.js"></script> <!-- Path to the compiled Vue bundle -->
+    @if (isDevelopment)
+    {
+        <!-- Load from Webpack DevServer for hot reloading -->
+        <script src="http://localhost:9000/bundle.js"></script>
+    }
+    else
+    {
+        <!-- Load from static dist folder in production -->
+        <script src="~/dist/bundle.js"></script>
+    }
 }

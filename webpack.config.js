@@ -1,4 +1,5 @@
-﻿const path = require("path");
+﻿// webpack.config.js
+const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -33,9 +34,8 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: "./wwwroot/js/index.html", // Path to your HTML template
-      filename: "index.html", // Output file to serve from memory
-      inject: true, // Ensures automatic injection of bundle.js
+      template: "./wwwroot/js/index.html",
+      filename: "index.html",
     }),
   ],
   resolve: {
@@ -50,5 +50,15 @@ module.exports = {
     compress: true,
     port: 9000,
     hot: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*", // Allow cross-origin requests
+    },
+    proxy: [
+      {
+        context: ["/api"], // Proxy API requests to .NET backend
+        target: "http://localhost:5167",
+        changeOrigin: true,
+      },
+    ],
   },
 };
