@@ -1,0 +1,14 @@
+﻿@page
+@model RazorVueApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="vue-app">
+    <!-- Vue components will render here cshtml-->
+    <sample-component></sample-component>
+</div>
+
+@section Scripts {
+    <script src="~/dist/bundle.js"></script> <!-- Path to the compiled Vue bundle -->
+}
